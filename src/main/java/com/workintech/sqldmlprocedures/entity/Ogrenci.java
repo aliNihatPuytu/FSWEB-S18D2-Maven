@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,7 +20,7 @@ public class Ogrenci {
     private String soyad;
     private String cinsiyet;
     private String sinif;
-    private int puan;
+    private Integer puan;
     @Column(nullable = true)
-    private String dtarih;
+    private LocalDateTime dtarih;
 }

@@ -1,23 +1,23 @@
 package com.workintech.sqldmlprocedures.repository;
 
-
 import com.workintech.sqldmlprocedures.entity.Ogrenci;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Repository
 public interface OgrenciRepository extends JpaRepository<Ogrenci, Long> {
-
-    List<Ogrenci> findBySinif(String sinif);
 
     @Query(value = "SELECT * FROM ogrencilistesi()", nativeQuery = true)
     List<Ogrenci> findAllOgrenci();
 
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Transactional
-    @Modifying
-    @Query(value = "CALL public.sil(:ogrNo)", nativeQuery = true)
-    void removeOgrenci(long ogrNo);
+    @Query(value = "CALL sil(:ogrno)", nativeQuery = true)
+    void removeOgrenci(@Param("ogrno") Long ogrno);
+
+    List<Ogrenci> findBySinif(String sinif);
 }

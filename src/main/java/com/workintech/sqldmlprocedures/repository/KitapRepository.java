@@ -14,8 +14,8 @@ public interface KitapRepository extends JpaRepository<Kitap, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "CALL public.ekle(:ad, :puan, :yazarno, :turno)", nativeQuery = true)
-    void addNewKitap(String ad, int puan, long yazarno, long turno);
-
+    @Query(value = "CALL public.ekle(:ad, :sayfa, :yazarno, :turno)", nativeQuery = true)
+    void addNewKitap(String ad, int sayfa, long yazarno, long turno);
 
 }
+
